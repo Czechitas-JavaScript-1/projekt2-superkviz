@@ -53,7 +53,7 @@ h1 {
 	color: var(--cervena);
 }
 
-#otazka {
+.otazka {
 	margin: 20px 0 30px 0;
 	font-size: 36px;
 	line-height: 1.2;
@@ -64,6 +64,7 @@ h1 {
 .obsah {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 }
 
 .foto {
@@ -80,7 +81,7 @@ h1 {
 }
 
 #moznosti {
-	flex: 1;
+text-align: center;
 }
 
 #odpovedi {
