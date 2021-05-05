@@ -8,17 +8,22 @@ let zneniOtazky = document.createElement('span');
 let dotaz = document.querySelector('.otazka');
     dotaz.appendChild(zneniOtazky);   
 
-let fotky = {
-    fotka: 'obrazky/makovahora.JPG'
-}
-    let fotoKvizu = document.createElement('img');
-    fotoKvizu.className = 'foto';
-    fotoKvizu.src = fotky.fotka;
-    
-    let kviz = document.querySelector('.foto');
-      kviz.appendChild(fotoKvizu);
 
- 
+let fotky = ['obrazky/makovahora.JPG', 'obrazky/konopiste.JPG', 'obrazky/krivoklat.JPG'];
+    for(let i = 0; i < fotky.length; i ++) {
+        let fotka = fotky[i];
+        let fotoKvizu = document.createElement('img');
+        fotoKvizu.className = 'foto';
+        fotoKvizu.src = fotka;
+
+        let kviz = document.querySelector('.foto');
+        kviz.appendChild(fotoKvizu);
+        
+        console.log(fotka)
+        
+    }
+
+     
 
 let text = {
     volba1: 'Maková hora',
