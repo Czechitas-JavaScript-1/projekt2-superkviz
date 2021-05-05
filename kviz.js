@@ -10,18 +10,18 @@ let dotaz = document.querySelector('.otazka');
 
 
 let fotky = ['obrazky/makovahora.JPG', 'obrazky/konopiste.JPG', 'obrazky/krivoklat.JPG'];
-    for(let i = 0; i < fotky.length; i ++) {
-        let fotka = fotky[i];
+      
+
         let fotoKvizu = document.createElement('img');
         fotoKvizu.className = 'foto';
-        fotoKvizu.src = fotka;
+        fotoKvizu.src = fotky[1];
 
         let kviz = document.querySelector('.foto');
         kviz.appendChild(fotoKvizu);
         
-        console.log(fotka)
+        console.log(fotky[0])
         
-    }
+    
 
      
 
