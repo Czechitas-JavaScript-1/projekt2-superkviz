@@ -11,38 +11,38 @@ let dotaz = document.querySelector('.otazka');
 
 let fotky = ['obrazky/makovahora.JPG', 'obrazky/konopiste.JPG', 'obrazky/krivoklat.JPG'];
       
-
-        let fotoKvizu = document.createElement('img');
-        fotoKvizu.className = 'foto';
-        fotoKvizu.src = fotky[1];
-
-        let kviz = document.querySelector('.foto');
-        kviz.appendChild(fotoKvizu);
-        
-        console.log(fotky[0])
-        
-    
-
+console.log(fotky[0])
      
+let text = [
+     'Maková hora',
+     'Sezamová hora',
+     'Psí hora'
+    
+]     
+            
+    
+function dalsiStrana() {
+    let fotoKvizu = document.createElement('img');
+    fotoKvizu.className = 'foto';
+    fotoKvizu.src = fotky[0];
 
-let text = {
-    volba1: 'Maková hora',
-    volba2: 'Sezamová hora',
-    volba3: 'Psí hora'
-}  
+    let kviz = document.querySelector('.foto');
+    kviz.appendChild(fotoKvizu);
+    
+    
 
 let cisloVolby1 = document.createElement('span');
     cisloVolby1.className = 'volba1';
-    cisloVolby1.innerHTML = text.volba1;
+    cisloVolby1.innerHTML = text[0];
 
 
 let cisloVolby2 = document.createElement('span');   
     cisloVolby2.className = 'volba2';
-    cisloVolby2.innerHTML = text.volba2;
+    cisloVolby2.innerHTML = text[1];
 
 let cisloVolby3 = document.createElement('span');   
     cisloVolby3.className = 'volba3';
-    cisloVolby3.innerHTML = text.volba3;   
+    cisloVolby3.innerHTML = text[2];   
 
 
 let volba1 = document.querySelector('.volba1');
@@ -55,6 +55,6 @@ let volba3 = document.querySelector('.volba3');
    volba3.appendChild(cisloVolby3);    
 
 
-
+}
 
  
