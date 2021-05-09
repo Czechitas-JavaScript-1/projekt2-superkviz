@@ -4,7 +4,7 @@ let textDotazu = {
 let zneniOtazky = document.createElement('span');
     zneniOtazky.className = 'otazka';
     zneniOtazky.innerHTML = textDotazu.otazka;
-
+/*  */
 let dotaz = document.querySelector('.otazka');
     dotaz.appendChild(zneniOtazky);   
 
@@ -15,7 +15,8 @@ let fotky = ['obrazky/makovahora.JPG', 'obrazky/konopiste.JPG', 'obrazky/krivokl
 let text1 = ['Maková hora', 'Novy zamek', 'Jiny zamek'];     
 let text2 = ['Sezamová hora', 'Konopiště', 'Podobny zamek'];
 let text3 = ['Psí hora', 'Stary zamek', 'Krivoklat'];           
-    
+
+
 function dalsiStrana() {
     let fotoKvizu = document.createElement('img');
     fotoKvizu.className = 'foto';
@@ -24,13 +25,17 @@ function dalsiStrana() {
     
     let kviz = document.querySelector('.foto');
     kviz.appendChild(fotoKvizu);
+    //fotky.shift();
+    fotky.splice(0, 1,);
     
-    fotky.shift();
+    
+
 
 let cisloVolby1 = document.createElement('span');
     cisloVolby1.className = 'volba1';
     cisloVolby1.innerHTML = text1[0];
     text1.shift();
+    
 
 let cisloVolby2 = document.createElement('span');   
     cisloVolby2.className = 'volba2';
