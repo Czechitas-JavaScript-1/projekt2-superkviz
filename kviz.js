@@ -1,63 +1,68 @@
-let textDotazu = {
-    otazka: 'Kde jsme byli na výletě?'
-}
-let zneniOtazky = document.createElement('span');
-    zneniOtazky.className = 'otazka';
-    zneniOtazky.innerHTML = textDotazu.otazka;
-/*  */
-let dotaz = document.querySelector('.otazka');
-    dotaz.appendChild(zneniOtazky);   
-
-
-let fotky = ['obrazky/makovahora.JPG', 'obrazky/konopiste.JPG', 'obrazky/krivoklat.JPG'];
 
     
-let text1 = ['Maková hora', 'Novy zamek', 'Jiny zamek'];     
-let text2 = ['Sezamová hora', 'Konopiště', 'Podobny zamek'];
-let text3 = ['Psí hora', 'Stary zamek', 'Krivoklat'];           
+let otazky = [
+    {
+        otazka: 'Kde jsme byli na výletě?',
+        obrazek: 'obrazky/makovahora.JPG',
+        odpovedi: [
+            'Maková hora',
+            'Sezamová hora',
+            'Psí hora'
+        ],
+        spravnaOdpoved: 1
+    },
+    {
+        otazka: 'Kde jsme byli na výletě?',
+        obrazek: 'obrazky/konopiste.JPG',
+        odpovedi: [
+            'Žleby',
+            'Konopiště',
+            'Žinkovy'
+        ],
+        spravnaOdpoved: 2
+
+    },
+    {
+        otazka: 'Kde jsme byli na výletě?',
+        obrazek: 'obrazky/krivoklat.JPG',
+        odpovedi: [
+            'Krivoklat',
+            'Sovinec',
+            'Veveří'
+        ],
+        spravnaOdpoved: 1
+        
+    },
+    {
+    otazka: 'Kde jsme byli na výletě?',
+    obrazek: 'obrazky/valdek.JPG',
+    odpovedi: [
+        'Vlčtejn',
+        'Šelmberg',
+        'Valdek'
+    ],
+    spravnaOdpoved: 3
+    }
+]
+
+
 
 
 function dalsiStrana() {
-    let fotoKvizu = document.createElement('img');
-    fotoKvizu.className = 'foto';
-    fotoKvizu.src = fotky[0];
 
+    document.querySelector('.otazka').innerHTML = otazky[0].
+    otazka;
+
+   
+    document.querySelector('.foto').innerHTML = otazky[0].obrazek;
+
+    document.querySelector('.volba1').innerHTML = otazky[0].odpovedi[0];
     
-    let kviz = document.querySelector('.foto');
-    kviz.appendChild(fotoKvizu);
-    //fotky.shift();
-    fotky.splice(0, 1,);
+    document.querySelector('.volba2').innerHTML = otazky[0].odpovedi[1];
     
-    
+    document.querySelector('.volba3').innerHTML = otazky[0].odpovedi[2];
 
-
-let cisloVolby1 = document.createElement('span');
-    cisloVolby1.className = 'volba1';
-    cisloVolby1.innerHTML = text1[0];
-    text1.shift();
-    
-
-let cisloVolby2 = document.createElement('span');   
-    cisloVolby2.className = 'volba2';
-    cisloVolby2.innerHTML = text2[0];
-    text2.shift();
-
-let cisloVolby3 = document.createElement('span');   
-    cisloVolby3.className = 'volba3';
-    cisloVolby3.innerHTML = text3[0];
-    text3.shift();   
-
-
-let volba1 = document.querySelector('.volba1');
-   volba1.appendChild(cisloVolby1);
-
-let volba2 = document.querySelector('.volba2');
-   volba2.appendChild(cisloVolby2);
-
-let volba3 = document.querySelector('.volba3');
-   volba3.appendChild(cisloVolby3);    
-
-
+    otazky.shift();
 }
 
  
