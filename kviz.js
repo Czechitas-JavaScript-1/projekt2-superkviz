@@ -47,15 +47,13 @@ let otazky = [
 
 
 
-
 function dalsiStrana() {
 
     document.querySelector('.otazka').innerHTML = otazky[0].
     otazka;
 
-   
-    document.querySelector('.foto').innerHTML = otazky[0].obrazek;
-
+    document.querySelector('img').src = otazky[0].obrazek;
+    
     document.querySelector('.volba1').innerHTML = otazky[0].odpovedi[0];
     
     document.querySelector('.volba2').innerHTML = otazky[0].odpovedi[1];
