@@ -9,7 +9,9 @@ let otazky = [
             'Sezamová hora',
             'Psí hora'
         ],
-        spravnaOdpoved: 1
+        spravnaOdpoved: [
+           'Maková hora'
+        ]
     },
     {
         otazka: 'Kde jsme byli na výletě?',
@@ -19,7 +21,9 @@ let otazky = [
             'Konopiště',
             'Žinkovy'
         ],
-        spravnaOdpoved: 2
+        spravnaOdpoved: [
+            'Konopiště'
+        ]
 
     },
     {
@@ -30,20 +34,32 @@ let otazky = [
             'Sovinec',
             'Veveří'
         ],
-        spravnaOdpoved: 1
+        spravnaOdpoved: [
+            'Krivoklat'
+        ]
         
     },
     {
-    otazka: 'Kde jsme byli na výletě?',
-    obrazek: 'obrazky/valdek.JPG',
-    odpovedi: [
-        'Vlčtejn',
-        'Šelmberg',
-        'Valdek'
-    ],
-    spravnaOdpoved: 3
+        otazka: 'Kde jsme byli na výletě?',
+        obrazek: 'obrazky/valdek.JPG',
+        odpovedi: [
+            'Vlčtejn',
+            'Šelmberg',
+            'Valdek'
+        ],
+    
+        spravnaOdpoved: [
+            'Valdek'
+        ]
+
     }
+    
 ]
+
+
+let volba1 = document.querySelector('.volba1');
+let volba2 = document.querySelector('.volba2');
+let volba3 = document.querySelector('.volba3');
 
 
 
@@ -54,13 +70,39 @@ function dalsiStrana() {
 
     document.querySelector('img').src = otazky[0].obrazek;
     
-    document.querySelector('.volba1').innerHTML = otazky[0].odpovedi[0];
-    
-    document.querySelector('.volba2').innerHTML = otazky[0].odpovedi[1];
-    
-    document.querySelector('.volba3').innerHTML = otazky[0].odpovedi[2];
+    volba1.innerHTML = otazky[0].odpovedi[0];
 
-    otazky.shift();
+        if(otazky[0].odpovedi[0] === otazky[0].spravnaOdpoved) {
+            pocitej();
+        } 
+    
+    volba2.innerHTML = otazky[0].odpovedi[1];
+
+        if(otazky[0].odpovedi[1] ===  otazky[0].spravnaOdpoved ) {
+            pocitej();
+        }
+    
+    volba3.innerHTML = otazky[0].odpovedi[2];
+
+        if(otazky[0].odpovedi[2] ===  otazky[0].spravnaOdpoved ) {
+            pocitej();
+        }
+
+    otazky.shift()
 }
 
+volba1.addEventListener("click", pocitej);
+volba2.addEventListener("click", pocitej);
+volba3.addEventListener("click", pocitej);
+
+
+let pocitadlo = document.querySelector('.pocitadlo');
+let pocet = 0;
+function pocitej() {
+    pocet++;
+    pocitadlo.innerHTML = pocet;
+}
  
+
+
+
