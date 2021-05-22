@@ -1,10 +1,10 @@
 
     
 let otazky = [
-   
+    
 
     {
-        otazka: 'Na kterou horu jsme se vydali?',
+        dotaz: 'Na kterou horu jsme se vydali?',
         obrazek: 'obrazky/makovahora.JPG',
         odpovedi: [
             'Maková hora',
@@ -12,11 +12,13 @@ let otazky = [
             'Psí hora'
         ],
         spravnaOdpoved: [
-           'Maková hora'
+           'Maková hora',
+           'Sezamová hora',
+            'Psí hora'
         ]
     },
     {
-        otazka: 'V jakém zámku jsme se procházeli?',
+        dotaz: 'V jakém zámku jsme se procházeli?',
         obrazek: 'obrazky/nebilovy.JPG',
         odpovedi: [
             'Žleby',
@@ -24,12 +26,14 @@ let otazky = [
             'Žinkovy'
         ],
         spravnaOdpoved: [
-            'Nebílovy'
+            'Nebílovy',
+            'Žleby',
+            'Žinkovy'
         ]
 
     },
     {
-        otazka: 'Kolem kterého zámku jsme se toulali?',
+        dotaz: 'Kolem kterého zámku jsme se toulali?',
         obrazek: 'obrazky/krivoklat.JPG',
         odpovedi: [
             'Krivoklat',
@@ -37,12 +41,14 @@ let otazky = [
             'Veveří'
         ],
         spravnaOdpoved: [
-            'Krivoklat'
+            'Krivoklat',
+            'Sovinec',
+            'Veveří'
         ]
         
     },
     {
-        otazka: 'Kde jsme byli na výletě?',
+        dotaz: 'Kde jsme byli na výletě?',
         obrazek: 'obrazky/valdek.JPG',
         odpovedi: [
             'Vlčtejn',
@@ -51,70 +57,105 @@ let otazky = [
         ],
     
         spravnaOdpoved: [
-            'Valdek'
+            'Valdek',
+            'Šelmberg',
+            'Vlčtejn'
         ]
-
+    },
+    {
+        dotaz: '',
+        obrazek: '',
+        odpovedi: [
+            '',
+            '',
+            ''
+        ],
+    
+        spravnaOdpoved: [
+            '',
+            '',
+            ''
+        ]
     }
     
 ]
 
 
-let volba1 = document.querySelector('.volba1');
-let volba2 = document.querySelector('.volba2');
-let volba3 = document.querySelector('.volba3');
+            function dalsiStrana() {
+                
+            
+                document.querySelector('.otazka').innerHTML = otazky[0].dotaz;
 
-volba1.addEventListener("click", pocitej);
-volba2.addEventListener("click", pocitej);
-volba3.addEventListener("click", pocitej);
+                document.querySelector('img').src = otazky[0].obrazek;
 
+                
+                let volba1 = document.querySelector('.volba1');
+                let volba2 = document.querySelector('.volba2');
+                let volba3 = document.querySelector('.volba3'); 
 
-let pocitadlo = document.querySelector('.pocitadlo');
-
-function pocitej() {
-    
-    pocitadlo.innerHTML = 'Správná odpověď je ' + otazky[0].spravnaOdpoved[0];
-    
-}
-
+                let cisloVolby1 = document.createElement('span');
+                cisloVolby1.className = 'volba1';
+                cisloVolby1.innerHTML = volba1;
 
 
-function dalsiStrana() {
+            let cisloVolby2 = document.createElement('span');   
+                cisloVolby2.className = 'volba2';
+                cisloVolby2.innerHTML = volba2;
 
-    document.querySelector('.otazka').innerHTML = otazky[0].
-    otazka;
+            let cisloVolby3 = document.createElement('span');   
+                cisloVolby3.className = 'volba3';
+                cisloVolby3.innerHTML = volba3;   
 
-    document.querySelector('img').src = otazky[0].obrazek;
-    
-    if(otazky[0].odpovedi[0] === otazky[0].spravnaOdpoved[0]) {
+
+                volba1.innerHTML = otazky[0].odpovedi[0]; 
+                volba2.innerHTML = otazky[0].odpovedi[1];
+                volba3.innerHTML = otazky[0].odpovedi[2];
+
+              
+
+            otazky.shift();
+
+     
+            let spravneOdpovedi = [
+
+                {
+                    jmeno: 'Makova hora',
+                    fotka: "obrazky/makovahora.JPG"
+                },
+                {
+                    jmeno: 'Nebilovy',
+                    fotka: "obrazky/nebilovy.JPG"
+                },
+                {
+                    jmeno: 'Krivoklat',
+                    fotka: "obrazky/krivoklat.JPG"
+                }
+
+             ]       
+
+             
+
+
+             if(otazky.length == 0){
+               
         
-        console.log(otazky[0].spravnaOdpoved[0]);
-        console.log(otazky[0].odpovedi[0])
-    }
-   
+             
+            
 
-    volba1.innerHTML = otazky[0].odpovedi[0];
+             document.querySelector('.otazka').innerHTML = 'Správná odpověď';
 
-    if(otazky[0].odpovedi[1] ===  otazky[0].spravnaOdpoved[1] ) {
-        pocitej();
-        console.log(otazky[0].spravnaOdpoved[1])
-        console.log(otazky[0].odpovedi[1])
-    } 
+
     
-    volba2.innerHTML = otazky[0].odpovedi[1];
+        
 
-    if(otazky[0].odpovedi[2] ===  otazky[0].spravnaOdpoved[2] ) {
-        pocitej();
-    }
+    document.querySelector('img').src = spravneOdpovedi[0].fotka;
+    document.querySelector('#odpovedi').innerHTML = spravneOdpovedi[0].jmeno;
+     
+
     
-    volba3.innerHTML = otazky[0].odpovedi[2];
+            }
 
-
-
-    otazky.shift()
-}
-
-
- 
-
-
-
+             
+                     
+           
+ }
