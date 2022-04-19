@@ -3,21 +3,21 @@ let otazky = [
     poradi: 1,
     dotaz: "Co je ikonická hračka z 80. let?",
     obrazek: "obrazky/moncicak.jpg",
-    odpovedi: ["Kočičák", "Mončičák", "Opičák"],
+    moznosti: ["Kočičák", "Mončičák", "Opičák"],
     spravnaOdpoved: 1
   },
   {
     poradi: 2,
     dotaz: "Jaké je Matějovo nejoblíbenější ovoce?",
     obrazek: "obrazky/ovoce.jpg",
-    odpovedi: ["Kokos","Melounek","Jahoda","ani jedna z možností"],
+    moznosti: ["Kokos","Melounek","Jahoda","ani jedna z možností"],
     spravnaOdpoved: 2
   },
   {
     poradi: 3,
     dotaz: "Pro úspěšné absolvování kurzu je potřeba...",
     obrazek: "obrazky/pivo.jpg",
-    odpovedi: ["umět Javascript","chodit po kurzu do hospody"],
+    moznosti: ["umět Javascript","chodit po kurzu do hospody"],
     spravnaOdpoved: 0
   }
 ]
@@ -27,8 +27,7 @@ let otazky = [
 // definování globálních proměnných:
 i = 0;
 let otazka = otazky[i];
-let obsah, moznostiElement, odpovediElement, seznamOdpovedi
-let indexOdpovedi = 0;
+let obsah, moznostiElement, seznamMoznosti, indexMoznosti, obraz
 
 
 
@@ -49,31 +48,32 @@ function zobrazOtazku(otazka) {
   obrazekElement.className = "foto";
   obrazekElement.setAttribute("id","obrazek");
   obrazekElement.src = otazka.obrazek;
-  let obraz = document.getElementById("obraz");
-  obraz.appendChild(obrazekElement);
+
+  seznamMoznosti = document.createElement("ul");
+  seznamMoznosti.setAttribute("id", "odpovedi");
 
   // vypropagování na UI:
   moznostiElement = document.getElementById("moznosti");
-  seznamOdpovedi = document.createElement("ul");
-  moznostiElement.appendChild(seznamOdpovedi);
-  seznamOdpovedi.setAttribute("id", "odpovedi");
+  moznostiElement.appendChild(seznamMoznosti);
+  obraz = document.getElementById("obraz");
+  obraz.appendChild(obrazekElement);
 }
 
 
 
 function zobrazMoznosti(otazka) {
-  indexOdpovedi = 0;
-  otazka.odpovedi.forEach(odpoved => {
-    let odpovedElement = document.createElement("li");
-    odpovedElement.textContent = odpoved;
-    odpovedElement.dataset.odpoved = indexOdpovedi++;
-    odpovedElement.className = "odpoved";
+  indexMoznosti = 0;
+  otazka.moznosti.forEach(moznost => {
+    let moznostElement = document.createElement("li");
+    moznostElement.textContent = moznost;
+    moznostElement.dataset.odpoved = indexMoznosti++;
+    moznostElement.className = "moznost";
 
     // vypropagování možností na UI:
-    seznamOdpovedi.appendChild(odpovedElement);
+    seznamMoznosti.appendChild(moznostElement);
   });
   // přiřazení eventů ke kliknutí na odpověď:
-  let moznosti = document.querySelectorAll(".odpoved");
+  let moznosti = document.querySelectorAll(".moznost");
   moznosti.forEach((moznost) => {
     moznost.addEventListener("click", poKliknuti)
   })
@@ -85,15 +85,14 @@ let kliknuteOdpovedi = [];
 let moznost;
 
 function poKliknuti(udalost) {
+  //zaznamenání vybrané odpovědi do pole:
   moznost = udalost.target;
   let indexVybraneOdpovedi = parseInt(moznost.dataset.odpoved);
-  //zaznamenání vybrané odpovědi do pole:
   kliknuteOdpovedi.push(indexVybraneOdpovedi);
 
   //nová iterace pole otázek:
   skryjPredchoziOtazku(); // definována níže
-  i++; //přejde na další otázku
-  otazka = otazky[i];
+  otazka = otazky[++i]; //přejde na další otázku
   //rozhodování, co se bude dít po skrytí předchozí otázky:
   if (kliknuteOdpovedi.length < 3) {
     zobrazOtazku(otazka);
@@ -105,7 +104,7 @@ function poKliknuti(udalost) {
 }
 
 function skryjPredchoziOtazku () {
-  moznostiElement.removeChild(seznamOdpovedi);
+  moznostiElement.removeChild(seznamMoznosti);
   let obrazekElement = document.querySelector(".foto");
   let obraz = document.getElementById("obraz");
   obraz.removeChild(obrazekElement);
@@ -135,11 +134,11 @@ function vyhodnoceni() {
       hodnoceni.className = "hodnoceni";
       pocetSpravnychOdpovedi++;
       } else {
-        hodnoceni.textContent = "Správná odpověď: " + otazka.odpovedi[otazka.spravnaOdpoved];
+        hodnoceni.textContent = "Správná odpověď: " + otazka.moznosti[otazka.spravnaOdpoved];
     }
 
     let text = document.createElement("p");
-    text.textContent = "Tvoje odpověd: " + otazka.odpovedi[kliknuteOdpovedi[a]];
+    text.textContent = "Tvoje odpověd: " + otazka.moznosti[kliknuteOdpovedi[a]];
 
     // vypropagování dílčího hodnocení na UI:
     let vysledekObsah = document.querySelector(".vysledek__obsah");
@@ -152,16 +151,8 @@ function vyhodnoceni() {
   })
 
   // sourhnné hodnocení:
-  let vysledek;
-  if (pocetSpravnychOdpovedi == 3) {
-    vysledek = "Správně 3 ze 3 otázek. Úspěšnost 100 %."
-  } else if (pocetSpravnychOdpovedi == 2) {
-    vysledek = "Správně 2 ze 3 otázek. Úspěšnost 66 %."
-  } else if (pocetSpravnychOdpovedi == 1) {
-    vysledek = "Správně 1 ze 3 otázek. Úspěšnost 33 %."
-  } else {
-    vysledek = "Správně 0 ze 3 otázek. Úspěšnost 0 %"
-  }
+  let vysledek = `Správně ${pocetSpravnychOdpovedi} ze ${otazky.length} otázek. Úspěšnost ${Math.floor(pocetSpravnychOdpovedi / otazky.length * 100)} %.`
+
   // vypropagování souhrnného hodnocení:
   let uspesnost = document.querySelector(".uspesnost");
   uspesnost.textContent = vysledek;
